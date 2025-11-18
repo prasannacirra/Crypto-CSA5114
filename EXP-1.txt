@@ -1,0 +1,28 @@
+def caesar_cipher(text, k):
+    result = ""
+
+    for char in text:
+        if char.isalpha():  
+            shift = k % 26
+            ascii_offset = 65 if char.isupper() else 97
+            new_char = chr((ord(char) - ascii_offset + shift) % 26 + ascii_offset)
+            result += new_char
+        else:
+            result += char  
+    return result
+
+
+# Example usage:
+text = input("Enter the text: ")
+k = int(input("Enter the shift value (1–25): "))
+
+encrypted_text = caesar_cipher(text, k)
+print("Encrypted Text:", encrypted_text)
+
+# Optional: Decryption
+decrypt_choice = input("Do you want to decrypt it? (yes/no): ").lower()
+
+if decrypt_choice == "yes":
+    decrypted_text = caesar_cipher(encrypted_text, 26 - k)
+    print("Decrypted Text:", decrypted_text)
+
